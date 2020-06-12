@@ -154,13 +154,13 @@ def main():
 
     try:
         dev = SnmpHandler(**nelsnmp_args)
-    except Exception, err:
+    except Exception as err:
         module.fail_json(msg=str(err))
 
     hostinfo = HostInfo(dev)
     try:
         hostinfo.get_version()
-    except Exception, err:
+    except Exception as err:
         module.fail_json(msg=str(err))
 
     results = {}

@@ -170,7 +170,7 @@ def main():
 
     try:
         dev = SnmpHandler(**nelsnmp_args)
-    except Exception, err:
+    except Exception as err:
         module.fail_json(msg=str(err))
 
     results = {}
@@ -180,7 +180,7 @@ def main():
             results[oid] = None
         try:
             varbinds = dev.get(*m_args['oid'])
-        except Exception, err:
+        except Exception as err:
             module.fail_json(msg=str(err))
         for oid, value in varbinds:
             for desired_oid in m_args['oid']:
@@ -192,7 +192,7 @@ def main():
     else:
         try:
             vartable = dev.getnext(*m_args['oid'])
-        except Exception, err:
+        except Exception as err:
             module.fail_json(msg=str(err))
         for varbinds in vartable:
             for oid, value in varbinds:
